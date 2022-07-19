@@ -1,6 +1,20 @@
 const app = require("express")();
+const http = require("http");
+const swaggerUi = require("swagger-ui-express");
+const swaggerFile = require("./swagger_output.json");
+
 const port = 8080;
 
-app.get("/", (req, res) => res.send("Hello World!"));
+http
+  .createServer(app)
+  .listen(port)
+  .on("listening", () => {
+    console.log(`Listening on port ${port}`);
+  })
+  .on("error", (err) => {
+    console.log(err);
+  });
 
-app.listen(port, () => console.log(`App listening on port ${port}!`));
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
+require("./src/endpoints")(app);
