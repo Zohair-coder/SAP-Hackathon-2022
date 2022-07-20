@@ -21,7 +21,7 @@ function HomeView() {
             >
                 <Button>My Fridge</Button>
                 <Button>Find a Recipe</Button>
-                <Button>My Profile</Button>
+                <Button onClick={useNavigate('/')}>My Profile</Button>
 
             </FlexBox>
         </div>
