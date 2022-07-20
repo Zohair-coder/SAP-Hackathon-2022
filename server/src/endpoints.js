@@ -1,3 +1,5 @@
+const isAuthenticated = require("./auth");
+
 function endpoints(app) {
   app.get("/users/:id", (req, res) => {
     // #swagger.tags = ['User']
