@@ -7,7 +7,6 @@ function App() {
   return (
     <div>
       <ThemeProvider>
-        <h1>The Missing Piece</h1>
         <LoginView></LoginView>
       </ThemeProvider>
     </div>

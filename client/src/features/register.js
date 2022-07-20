@@ -10,7 +10,7 @@ import {
 } from '@ui5/webcomponents-react';
 import { FlexBox } from '@ui5/webcomponents-react';
 
-function LoginView() {
+function RegisterView() {
   return (
     <div>
       <h1>The Missing Piece</h1>
@@ -19,17 +19,19 @@ function LoginView() {
         justifyContent={FlexBoxJustifyContent.Center}
         alignItems={FlexBoxAlignItems.Start}
       >
+        <Label>E-mail:</Label>
+        <Input></Input>
         <Label>Username:</Label>
         <Input></Input>
         <Label>Password:</Label>
         <Input></Input>
         <h3>
-          Don't have an account? <a href='/register'>Sign Up</a>
+          Already have an account? <a href='/login'>Log In</a>
         </h3>
-        <Button>Log In</Button>
+        <Button onClick={useNavigate('/')}>Sign Up</Button>
       </FlexBox>
     </div>
   );
 }
 
-export default LoginView;
+export default RegisterView;
