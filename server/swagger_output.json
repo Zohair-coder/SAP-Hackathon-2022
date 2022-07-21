@@ -77,13 +77,14 @@
         }
       }
     },
-    "/api/fridge/items": {
+    "/api/fridge/items/{userId}": {
       "get": {
         "description": "",
         "parameters": [
           {
-            "name": "userid",
-            "in": "header",
+            "name": "userId",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
@@ -103,8 +104,9 @@
         "description": "",
         "parameters": [
           {
-            "name": "userid",
-            "in": "header",
+            "name": "userId",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {

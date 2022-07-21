@@ -61,3 +61,11 @@ export function loginUser(email, password) {
   };
   return axios(config);
 }
+
+export function getItemsFromFridge(userId) {
+  let config = {
+    method: "get",
+    url: `/api/fridge/${userId}`,
+  };
+  return axios(config);
+}
