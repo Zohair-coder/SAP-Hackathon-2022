@@ -26,7 +26,7 @@ function LoginView() {
         <h3>
           Don't have an account? <a href='/register'>Sign Up</a>
         </h3>
-        <Button>Log In</Button>
+        <Button onClick={useNavigate('/')}>Sign Up</Button>
       </FlexBox>
     </div>
   );

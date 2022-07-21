@@ -10,7 +10,7 @@ import {
 } from '@ui5/webcomponents-react';
 import { FlexBox } from '@ui5/webcomponents-react';
 
-function HomeView() {
+function ProfileView() {
     return (
         <div>
             <h1> The Missing Piece</h1>
@@ -19,13 +19,10 @@ function HomeView() {
                 justifyContent={FlexBoxJustifyContent.Center}
                 alignItems={FlexBoxAlignItems.Start}
             >
-                <Button>My Fridge</Button>
-                <Button>Find a Recipe</Button>
-                <Button onClick={useNavigate('profile')}>My Profile</Button>
-
+               
             </FlexBox>
         </div>
     )
 }
 
-export default HomeView;
+export default ProfileView;
