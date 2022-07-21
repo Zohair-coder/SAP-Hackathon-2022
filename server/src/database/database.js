@@ -20,12 +20,23 @@ function registerUser(name, email, password) {
 
 async function loginUser(email, password) {
   const user = await models.User.findOne({ email: email });
-  return user.password === password;
+  if (user.password === password) {
+    return user;
+  } else {
+    return false;
+  }
 }
 
 async function getUserById(userId) {
-  const user = await models.User.findById(userId);
-  return use;
+  return models.User.findById(userId);
 }
 
-module.exports = { registerUser, loginUser };
+async function addItem(userId, itemName, itemId, itemImage) {
+  await models.User.updateOne(
+    { _id: userId },
+    { $push: { items: { name: itemName, id: itemId, image: itemImage } } }
+  );
+  return models.User.findById(userId);
+}
+
+module.exports = { registerUser, loginUser, getUserById, addItem };

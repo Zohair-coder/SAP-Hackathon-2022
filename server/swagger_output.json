@@ -11,7 +11,7 @@
     "http"
   ],
   "paths": {
-    "/api/register": {
+    "/api/auth/register": {
       "post": {
         "description": "",
         "parameters": [
@@ -44,7 +44,7 @@
         }
       }
     },
-    "/api/login": {
+    "/api/auth/login": {
       "post": {
         "description": "",
         "parameters": [
@@ -82,9 +82,48 @@
         "description": "",
         "parameters": [
           {
-            "name": "userId",
+            "name": "userid",
             "in": "header",
             "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item_name": {
+                  "example": "any"
+                },
+                "item_id": {
+                  "example": "any"
+                },
+                "item_image": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {

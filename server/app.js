@@ -10,7 +10,7 @@ http
   .createServer(app)
   .listen(port)
   .on("listening", () => {
-    console.log(`Listening on port ${port}`);
+    console.log(`Listening on http://localhost:${port}`);
   })
   .on("error", (err) => {
     console.log(err);
