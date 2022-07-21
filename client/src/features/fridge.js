@@ -11,6 +11,7 @@ import {
   getItemsFromFridge,
   addItemsToFridge,
   deleteItemFromFridge,
+  getUser,
 } from "../api/api";
 // import { FlexBox } from '@ui5/webcomponents-react';
 
@@ -63,6 +64,10 @@ async function delete_items_from_fridge() {
   console.log(await deleteItemFromFridge("62d9a055ccb69428780d5c7a", "716429"));
 }
 
+async function get_user() {
+  console.log(await getUser("62d9a055ccb69428780d5c7a"));
+}
+
 function FridgeView() {
   return (
     <div>
@@ -84,6 +89,7 @@ function FridgeView() {
       <Button onClick={delete_items_from_fridge}>
         Click Me to delete items from fridge
       </Button>
+      <Button onClick={get_user}>Click Me to get user information</Button>
       Fridge
       <Link to={"/recipes"}>
         <Button>Generate Recipes</Button>

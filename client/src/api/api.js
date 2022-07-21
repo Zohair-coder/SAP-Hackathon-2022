@@ -94,3 +94,11 @@ export function deleteItemFromFridge(userId, itemId) {
   };
   return axios(config);
 }
+
+export function getUser(userId) {
+  let config = {
+    method: "get",
+    url: `/api/users/info/${userId}`,
+  };
+  return axios(config);
+}
