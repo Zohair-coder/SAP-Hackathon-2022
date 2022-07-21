@@ -65,7 +65,32 @@ export function loginUser(email, password) {
 export function getItemsFromFridge(userId) {
   let config = {
     method: "get",
-    url: `/api/fridge/${userId}`,
+    url: `/api/fridge/items/${userId}`,
+  };
+  return axios(config);
+}
+
+export function addItemsToFridge(userId, itemName, itemId, itemImage) {
+  const body = {
+    item_name: itemName,
+    item_id: itemId,
+    item_image: itemImage,
+  };
+  let config = {
+    method: "post",
+    url: `/api/fridge/items/${userId}`,
+    data: body,
+  };
+  return axios(config);
+}
+
+export function deleteItemFromFridge(userId, itemId) {
+  let config = {
+    method: "delete",
+    url: `/api/fridge/items/${userId}`,
+    data: {
+      item_id: itemId,
+    },
   };
   return axios(config);
 }

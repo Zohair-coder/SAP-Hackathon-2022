@@ -25,11 +25,24 @@ router.post("/items/:userId", async (req, res) => {
     return res.status(404).send("User not found or unauthorized");
   }
   const { item_name, item_id, item_image } = req.body;
-  db.addItem(userId, item_name, item_id, item_image);
+  await db.addItem(userId, item_name, item_id, item_image);
   user = await db.getUserById(userId);
   res.send(user.items);
 });
 
-// router.delete()
+router.delete("/items/:userId", async (req, res) => {
+  const { userId } = req.params;
+  if (!userId) {
+    return res.status(400).send("User id not provided in request header");
+  }
+  let user = await db.getUserById(userId);
+  if (!user) {
+    return res.status(404).send("User not found or unauthorized");
+  }
+  const { item_id } = req.body;
+  await db.deleteItem(userId, item_id);
+  user = await db.getUserById(userId);
+  res.send(user.items);
+});
 
 module.exports = router;

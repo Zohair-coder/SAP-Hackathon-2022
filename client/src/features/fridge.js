@@ -8,6 +8,9 @@ import {
   getRecipeInformation,
   registerUser,
   loginUser,
+  getItemsFromFridge,
+  addItemsToFridge,
+  deleteItemFromFridge,
 } from "../api/api";
 // import { FlexBox } from '@ui5/webcomponents-react';
 
@@ -41,6 +44,25 @@ async function login_user() {
   console.log(await loginUser("zohair@email.com", "password"));
 }
 
+async function get_items_from_fridge() {
+  console.log(await getItemsFromFridge("62d9a055ccb69428780d5c7a"));
+}
+
+async function add_items_to_fridge() {
+  console.log(
+    await addItemsToFridge(
+      "62d9a055ccb69428780d5c7a",
+      "chicken",
+      "716429",
+      "https://spoonacular.com/recipeImages/716429-556x370.jpg"
+    )
+  );
+}
+
+async function delete_items_from_fridge() {
+  console.log(await deleteItemFromFridge("62d9a055ccb69428780d5c7a", "716429"));
+}
+
 function FridgeView() {
   return (
     <div>
@@ -53,6 +75,15 @@ function FridgeView() {
       </Button>
       <Button onClick={register_user}>Register User</Button>
       <Button onClick={login_user}>Login User</Button>
+      <Button onClick={get_items_from_fridge}>
+        Click Me to get items from fridge
+      </Button>
+      <Button onClick={add_items_to_fridge}>
+        Click Me to add items to fridge
+      </Button>
+      <Button onClick={delete_items_from_fridge}>
+        Click Me to delete items from fridge
+      </Button>
       Fridge
       <Link to={"/recipes"}>
         <Button>Generate Recipes</Button>

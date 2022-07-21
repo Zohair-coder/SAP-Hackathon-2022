@@ -39,4 +39,12 @@ async function addItem(userId, itemName, itemId, itemImage) {
   return models.User.findById(userId);
 }
 
-module.exports = { registerUser, loginUser, getUserById, addItem };
+async function deleteItem(userId, itemId) {
+  await models.User.updateOne(
+    { _id: userId },
+    { $pull: { items: { id: itemId } } }
+  );
+  return models.User.findById(userId);
+}
+
+module.exports = { registerUser, loginUser, getUserById, addItem, deleteItem };
