@@ -7,6 +7,7 @@ import {
   Button,
 } from '@ui5/webcomponents-react';
 import { FlexBox } from '@ui5/webcomponents-react';
+import './home.css';
 
 function HomeView() {
   return (

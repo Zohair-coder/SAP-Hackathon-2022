@@ -1,7 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@ui5/webcomponents-react";
-import { findRecipesByIngredients } from "../api/api";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '@ui5/webcomponents-react';
+import './fridge.css';
+import { findRecipesByIngredients } from '../api/api';
 // import { FlexBox } from '@ui5/webcomponents-react';
 
 // function createFoodItem(data) {
@@ -15,7 +16,7 @@ import { findRecipesByIngredients } from "../api/api";
 // }
 
 async function get_information() {
-  console.log(await findRecipesByIngredients(["chicken", "onion", "tomato"]));
+  console.log(await findRecipesByIngredients(['chicken', 'onion', 'tomato']));
 }
 
 function FridgeView() {
@@ -23,7 +24,7 @@ function FridgeView() {
     <div>
       <Button onClick={get_information}>Click Me to console log info</Button>
       Fridge
-      <Link to={"/recipes"}>
+      <Link to={'/recipes'}>
         <Button>Generate Recipes</Button>
       </Link>
     </div>
