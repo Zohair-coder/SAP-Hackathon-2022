@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Input,
   Label,
@@ -28,7 +28,9 @@ function RegisterView() {
         <h3>
           Already have an account? <a href='/login'>Log In</a>
         </h3>
-        <Button onClick={useNavigate('/')}>Sign Up</Button>
+        <Link to={'/home'}>
+          <Button>Sign Up</Button>
+        </Link>
       </FlexBox>
     </div>
   );
