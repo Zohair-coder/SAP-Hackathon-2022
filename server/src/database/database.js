@@ -9,9 +9,9 @@ mongoose.connect(
   `mongodb+srv://${mongoose_username}:${mongoose_password}@cluster0.hfpl4qv.mongodb.net/${database_name}`
 );
 
-function registerUser(name, email, password) {
+function registerUser(username, email, password) {
   return models.User.create({
-    name,
+    username: username,
     email: email,
     password: password,
     items: [],

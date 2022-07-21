@@ -35,4 +35,18 @@ export function getRecipeInformation(id) {
   return axios(config);
 }
 
-export function registerUser(email, username, password) {}
+export function registerUser(email, username, password) {
+    const data = {
+        username: username,
+        email: email,
+        password: password,
+    }
+    let config = {
+        method: "post",
+        url: "/api/register",
+        data: data,
+    }
+    
+    return axios(config);
+}
+
