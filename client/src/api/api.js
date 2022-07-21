@@ -16,9 +16,9 @@ export function findRecipesByIngredients(ingredients, numberOfRecipes = 10) {
 export function autocompleteIngredientSearch(query, number = 10) {
   let config = {
     method: "get",
-    url: `https://api.spoonacular.com/recipes/716429/information?apiKey=${api_key}`,
+    url: `https://api.spoonacular.com/food/ingredients/autocomplete?apiKey=${api_key}&query=${query}&number=${number}`,
     headers: {
-      Content: "application/json",
+      "Content-Type": "application/json",
     },
   };
   return axios(config);
@@ -29,24 +29,35 @@ export function getRecipeInformation(id) {
     method: "get",
     url: `https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_key}`,
     headers: {
-      Content: "application/json",
+      "Content-Type": "application/json",
     },
   };
   return axios(config);
 }
 
 export function registerUser(email, username, password) {
-    const data = {
-        username: username,
-        email: email,
-        password: password,
-    }
-    let config = {
-        method: "post",
-        url: "/api/register",
-        data: data,
-    }
-    
-    return axios(config);
+  const data = {
+    username: username,
+    email: email,
+    password: password,
+  };
+  let config = {
+    method: "post",
+    url: "/api/auth/register",
+    data: data,
+  };
+  return axios(config);
 }
 
+export function loginUser(email, password) {
+  const data = {
+    email: email,
+    password: password,
+  };
+  let config = {
+    method: "post",
+    url: "/api/auth/login",
+    data: data,
+  };
+  return axios(config);
+}
