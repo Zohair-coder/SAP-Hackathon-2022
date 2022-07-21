@@ -34,3 +34,5 @@ export function getRecipeInformation(id) {
   };
   return axios(config);
 }
+
+export function registerUser(email, username, password) {}
