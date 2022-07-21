@@ -15,12 +15,6 @@ const doc = {
   schemes: ["http"],
   consumes: ["application/json"],
   produces: ["application/json"],
-  tags: [
-    {
-      name: "User",
-      description: "Manager users",
-    },
-  ],
   securityDefinitions: {
     api_key: {
       type: "apiKey",
