@@ -18,5 +18,4 @@ http
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(express.json());
-
-require("./src/endpoints")(app);
+app.use("/api", require("./src/endpoints"));

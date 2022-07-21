@@ -10,30 +10,22 @@ mongoose.connect(
 );
 
 function registerUser(name, email, password) {
-  return models.User.create(
-    {
-      name,
-      email: email,
-      password: password,
-      items: [],
-    },
-    function (err, user) {
-      if (err) {
-        throw err;
-      } else {
-        console.log("User created: " + user);
-      }
-    }
-  );
+  return models.User.create({
+    name,
+    email: email,
+    password: password,
+    items: [],
+  });
 }
 
 async function loginUser(email, password) {
-  await models.User.findOne({ email: email }, function (err, user) {
-    if (err) {
-      throw err;
-    }
-    return user.password === password;
-  });
+  const user = await models.User.findOne({ email: email });
+  return user.password === password;
+}
+
+async function getUserById(userId) {
+  const user = await models.User.findById(userId);
+  return use;
 }
 
 module.exports = { registerUser, loginUser };

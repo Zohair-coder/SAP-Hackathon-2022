@@ -1,30 +1,47 @@
+const express = require("express");
+const router = express.Router();
+
 db = require("./database/database");
 
-function endpoints(app) {
-  app.post("/api/register", (req, res) => {
-    const { name, email, password } = req.body;
-    try {
-      db.registerUser(name, email, password);
-    } catch (err) {
-      console.log(err);
-      res.status(500).send(err);
-    }
-    res.send("User registered");
-  });
+router.post("/register", async (req, res) => {
+  const { name, email, password } = req.body;
+  let user;
+  try {
+    user = await db.registerUser(name, email, password);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+  res.send(user._id);
+});
 
-//   app.post("/api/login", async (req, res) => {
-//     const { email, password } = req.body;
-//     try {
-//       const user = await db.loginUser(email, password);
-//       if (user) {
-//         res.send("User logged in");
-//       }
-//       res.status(401).send("User unauthorized");
-//     } catch (err) {
-//       console.log(err);
-//       res.status(500).send(err);
-//     }
-//   });
-// }
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  let isLoggedIn;
+  try {
+    isLoggedIn = await db.loginUser(email, password);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send(err);
+  }
+  if (isLoggedIn) {
+    res.send("User logged in");
+  } else {
+    res.status(401).send("User unauthorized");
+  }
+});
 
-module.exports = endpoints;
+router.get("/fridge/items", async (req, res) => {
+  const userId = req.headers.userId;
+  if (!userId) {
+    return res.status(400).send("User id not provided in request body");
+  }
+  const user = await db.getUserById(userId);
+  if (!user) {
+    return res.status(404).send("User not found or unauthorized");
+  }
+
+  res.send(user.items);
+});
+
+module.exports = router;
