@@ -5,11 +5,31 @@ export function findRecipesByIngredients(ingredients, numberOfRecipes = 10) {
   let ingredientsString = ingredients.join(",");
   let config = {
     method: "get",
-    url: `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredientsString}&number=${numberOfRecipes}&ranking=2&ignorePantry=true`,
+    url: `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${api_key}&ingredients=${ingredientsString}&number=${numberOfRecipes}&ranking=2&ignorePantry=true`,
     headers: {
-      "x-api-key": api_key,
-      Authorization: "Bearer 4239a609f81848440c1a4479492cc8fb5a320ccc",
       "Content-Type": "application/json",
+    },
+  };
+  return axios(config);
+}
+
+export function autocompleteIngredientSearch(query, number = 10) {
+  let config = {
+    method: "get",
+    url: `https://api.spoonacular.com/recipes/716429/information?apiKey=${api_key}`,
+    headers: {
+      Content: "application/json",
+    },
+  };
+  return axios(config);
+}
+
+export function getRecipeInformation(id) {
+  let config = {
+    method: "get",
+    url: `https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_key}`,
+    headers: {
+      Content: "application/json",
     },
   };
   return axios(config);

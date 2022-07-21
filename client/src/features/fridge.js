@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '@ui5/webcomponents-react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@ui5/webcomponents-react";
 // import { FlexBox } from '@ui5/webcomponents-react';
 
 // function createFoodItem(data) {
@@ -17,7 +17,7 @@ function FridgeView() {
   return (
     <div>
       Fridge
-      <Link to={'/recipes'}>
+      <Link to={"/recipes"}>
         <Button>Generate Recipes</Button>
       </Link>
     </div>
