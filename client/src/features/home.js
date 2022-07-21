@@ -1,8 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
-  Input,
-  Label,
   FlexBoxAlignItems,
   FlexBoxDirection,
   FlexBoxJustifyContent,
@@ -11,21 +9,23 @@ import {
 import { FlexBox } from '@ui5/webcomponents-react';
 
 function HomeView() {
-    return (
-        <div>
-            <h1> The Missing Piece</h1>
-            <FlexBox
-                direction={FlexBoxDirection.Column}
-                justifyContent={FlexBoxJustifyContent.Center}
-                alignItems={FlexBoxAlignItems.Start}
-            >
-                <Button>My Fridge</Button>
-                <Button>Find a Recipe</Button>
-                <Button onClick={useNavigate('profile')}>My Profile</Button>
-
-            </FlexBox>
-        </div>
-    )
+  return (
+    <div>
+      <h1> The Missing Piece</h1>
+      <FlexBox
+        direction={FlexBoxDirection.Column}
+        justifyContent={FlexBoxJustifyContent.Center}
+        alignItems={FlexBoxAlignItems.Start}
+      >
+        <Link to={'/fridge'}>
+          <Button>My Fridge</Button>
+        </Link>
+        <Link to={'/profile'}>
+          <Button>Profile</Button>
+        </Link>
+      </FlexBox>
+    </div>
+  );
 }
 
 export default HomeView;
