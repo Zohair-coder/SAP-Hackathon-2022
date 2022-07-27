@@ -9,9 +9,9 @@ mongoose.connect(
   `mongodb+srv://${mongoose_username}:${mongoose_password}@cluster0.hfpl4qv.mongodb.net/${database_name}`
 );
 
-function registerUser(name, email, password) {
+function registerUser(username, email, password) {
   return models.User.create({
-    name,
+    username: username,
     email: email,
     password: password,
     items: [],
@@ -39,4 +39,12 @@ async function addItem(userId, itemName, itemId, itemImage) {
   return models.User.findById(userId);
 }
 
-module.exports = { registerUser, loginUser, getUserById, addItem };
+async function deleteItem(userId, itemId) {
+  await models.User.updateOne(
+    { _id: userId },
+    { $pull: { items: { id: itemId } } }
+  );
+  return models.User.findById(userId);
+}
+
+module.exports = { registerUser, loginUser, getUserById, addItem, deleteItem };

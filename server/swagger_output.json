@@ -21,7 +21,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
+                "username": {
                   "example": "any"
                 },
                 "email": {
@@ -77,13 +77,14 @@
         }
       }
     },
-    "/api/fridge/items": {
+    "/api/fridge/items/{userId}": {
       "get": {
         "description": "",
         "parameters": [
           {
-            "name": "userid",
-            "in": "header",
+            "name": "userId",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
@@ -103,8 +104,9 @@
         "description": "",
         "parameters": [
           {
-            "name": "userid",
-            "in": "header",
+            "name": "userId",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
@@ -124,6 +126,64 @@
                 }
               }
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/users/info/{userid}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {

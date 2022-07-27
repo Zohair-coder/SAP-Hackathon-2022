@@ -1,18 +1,18 @@
-import { React } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Button,
-  FlexBox,
-  FlexBoxDirection,
-  FlexBoxJustifyContent,
-  FlexBoxAlignItems,
-} from '@ui5/webcomponents-react';
+import { Button } from '@ui5/webcomponents-react';
 import './fridge.css';
-// import { findRecipesByIngredients } from '../api/api';
-
-// const [allItems, setAllItems] = React.useState < any > [];
-// const [items, setItems] = React.useState < any > [];
-// import { Recipe } from '../components/recipe';
+import {
+  autocompleteIngredientSearch,
+  findRecipesByIngredients,
+  getRecipeInformation,
+  registerUser,
+  loginUser,
+  getItemsFromFridge,
+  addItemsToFridge,
+  deleteItemFromFridge,
+  getUser,
+} from '../api/api';
 // import { FlexBox } from '@ui5/webcomponents-react';
 
 // function createFoodItem(data) {
@@ -25,14 +25,48 @@ import './fridge.css';
 //   return { items };
 // }
 
-// async function get_information() {
-//   // console.log(await findRecipesByIngredients(['chicken', 'onion', 'tomato']));
-//   recipes = await findRecipesByIngredients(['chicken', 'onion', 'tomato']);
-// }
+async function find_recipe() {
+  console.log(await findRecipesByIngredients(['chicken', 'onion', 'tomato']));
+}
 
-// let recipes = await new Promise((resolve, reject) => {
-//   findRecipesByIngredients(['chicken', 'onion', 'tomato']);
-// });
+async function autocomplete_ingredients() {
+  console.log(await autocompleteIngredientSearch('chicke'));
+}
+
+async function get_recipe_info() {
+  console.log(await getRecipeInformation(716429));
+}
+
+async function register_user() {
+  console.log(await registerUser('zohair@email.com', 'zohair', 'password'));
+}
+
+async function login_user() {
+  console.log(await loginUser('zohair@email.com', 'password'));
+}
+
+async function get_items_from_fridge() {
+  console.log(await getItemsFromFridge('62d9a055ccb69428780d5c7a'));
+}
+
+async function add_items_to_fridge() {
+  console.log(
+    await addItemsToFridge(
+      '62d9a055ccb69428780d5c7a',
+      'chicken',
+      '716429',
+      'https://spoonacular.com/recipeImages/716429-556x370.jpg'
+    )
+  );
+}
+
+async function delete_items_from_fridge() {
+  console.log(await deleteItemFromFridge('62d9a055ccb69428780d5c7a', '716429'));
+}
+
+async function get_user() {
+  console.log(await getUser('62d9a055ccb69428780d5c7a'));
+}
 
 function FridgeView() {
   // findRecipesByIngredients()
@@ -84,20 +118,29 @@ function FridgeView() {
 
   return (
     <div>
-      <FlexBox
-        direction={FlexBoxDirection.Column}
-        justifyContent={FlexBoxJustifyContent.Center}
-        alignItems={FlexBoxAlignItems.Start}
-      >
-        {/* <Button onClick={get_information}>Click Me to console log info</Button>
-        // {cards}
-        {items.map((item, index) => {
-          return()
-        }} */}
-        <Link to={'/recipes'}>
-          <Button>Generate Recipes</Button>
-        </Link>
-      </FlexBox>
+      <Button onClick={find_recipe}>Click Me to get recipe information</Button>
+      <Button onClick={autocomplete_ingredients}>
+        Click Me to autocomplete recipe ingredients
+      </Button>
+      <Button onClick={get_recipe_info}>
+        Click Me to get recipe information
+      </Button>
+      <Button onClick={register_user}>Register User</Button>
+      <Button onClick={login_user}>Login User</Button>
+      <Button onClick={get_items_from_fridge}>
+        Click Me to get items from fridge
+      </Button>
+      <Button onClick={add_items_to_fridge}>
+        Click Me to add items to fridge
+      </Button>
+      <Button onClick={delete_items_from_fridge}>
+        Click Me to delete items from fridge
+      </Button>
+      <Button onClick={get_user}>Click Me to get user information</Button>
+      Fridge
+      <Link to={'/recipes'}>
+        <Button>Generate Recipes</Button>
+      </Link>
     </div>
   );
 }
